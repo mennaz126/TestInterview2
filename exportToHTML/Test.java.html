@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Test.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Test.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">io.github.bonigarcia.wdm.WebDriverManager</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.chrome.ChromeDriver</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.testng.annotations.AfterTest</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.testng.annotations.BeforeTest</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">java.lang.System.out</span><span class="s0">;</span>
+
+
+<span class="s0">public class </span><span class="s1">Test {</span>
+    <span class="s1">WebDriver driver = </span><span class="s0">new </span><span class="s1">ChromeDriver()</span><span class="s0">;</span>
+
+
+
+    <span class="s0">public static void </span><span class="s1">main(String[] args) </span><span class="s0">throws </span><span class="s1">InterruptedException {</span>
+
+        <span class="s1">WebDriverManager.chromedriver().setup()</span><span class="s0">;</span>
+        <span class="s1">WebDriver driver = </span><span class="s0">new </span><span class="s1">ChromeDriver()</span><span class="s0">;</span>
+        <span class="s1">driver.get(</span><span class="s2">&quot;https://opd.portal.stage.discoveryeducationme.com/login/&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">driver.manage().window().maximize()</span><span class="s0">;</span>
+        <span class="s1">WebElement Learner = driver.findElement(By.xpath(</span><span class="s2">&quot;//button[contains(text(),'Learner')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+
+        <span class="s1">WebElement username=driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='email']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">WebElement Password=driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='password']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">WebElement Login=driver.findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'Login')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">username.sendKeys(</span><span class="s2">&quot;Learner&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Password.sendKeys(</span><span class="s2">&quot;123456&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Login.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">3000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement dropdown = driver.findElement(By.xpath(</span><span class="s2">&quot;//body/div[@id='__nuxt']/div[@id='__layout']/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]/img[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">WebElement Logout = driver.findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'logout')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">dropdown.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">1000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Logout.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">3000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement Mentor = driver.findElement(By.xpath(</span><span class="s2">&quot;/html/body/div/div/div/div[1]/div/div/div[1]/button[2]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Mentor.click()</span><span class="s0">;</span>
+        <span class="s1">WebElement username2 = driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='email']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">WebElement Password2 = driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='password']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">username2.sendKeys(</span><span class="s2">&quot;Mentor&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Password2.sendKeys(</span><span class="s2">&quot;123456&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement Login2=driver.findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'Login')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Login2.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">3000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement logoutmentor = driver.findElement(By.xpath(</span><span class="s2">&quot;/html/body/div/div/div/div[1]/div/section[2]/div[2]/div/div[1]/button/img&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">logoutmentor.click()</span><span class="s0">;</span>
+        <span class="s1">WebElement logoutbtn = driver.findElement(By.xpath(</span><span class="s2">&quot;/html/body/div/div/div/div[1]/div/section[2]/div[2]/div/div[2]/div/div/div&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">logoutbtn.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">3000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement Editor = driver.findElement(By.xpath(</span><span class="s2">&quot;/html/body/div/div/div/div[1]/div/div/div[1]/button[3]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Editor.click()</span><span class="s0">;</span>
+        <span class="s1">WebElement username3 = driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='email']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">WebElement Password3 = driver.findElement(By.xpath(</span><span class="s2">&quot;//input[@id='password']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">username3.sendKeys(</span><span class="s2">&quot;Editor&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Password3.sendKeys(</span><span class="s2">&quot;123456&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">WebElement Login3=driver.findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'Login')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Login3.click()</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s3">3000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">driver.quit()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>
